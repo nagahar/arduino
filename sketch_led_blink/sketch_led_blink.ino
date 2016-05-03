@@ -2,6 +2,8 @@ const int LED = 13; // LED is connected to 13-pin
 const int BUTTON = 7; // PUSH button is connected to 13-pin
 
 int val = 0;
+int old_val = 0;
+int state = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -12,11 +14,17 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   val = digitalRead(BUTTON);
-  if (val == HIGH) {
+  if ((val == HIGH) && (old_val == LOW)) {
+    state = 1 - state;
+    delay(10); // for de-bouncing
+  }
+
+  old_val = val;
+  if (state == 1) {
     digitalWrite(LED, HIGH);
-    delay(1000);
+    delay(50);
     digitalWrite(LED, LOW);
-    delay(1000);
+    delay(10);
   } else {
     digitalWrite(LED, LOW);
   }
