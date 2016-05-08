@@ -22,9 +22,9 @@ void loop() {
   old_val = val;
   if (state == 1) {
     digitalWrite(LED, HIGH);
-    delay(50);
+    delay(100);
     digitalWrite(LED, LOW);
-    delay(10);
+    delay(100);
   } else {
     digitalWrite(LED, LOW);
   }
